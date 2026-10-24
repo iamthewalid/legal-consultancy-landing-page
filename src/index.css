@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #071319;
+  --panel: #0c1f27;
+  --leather: #12303a;
+  --brass: #c9a227;
+  --brass-light: #e7c766;
+  --brass-dark: #8c6e15;
+  --slate: #8fa6ac;
+  --parchment: #f3ecdd;
+  --seal: #9e2b25;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--ink);
+  color: var(--parchment);
+  font-family: "Hind Siliguri", "Noto Serif Bengali", system-ui, sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--brass);
+  color: #071319;
+}
+
+.font-display {
+  font-family: "Noto Serif Bengali", serif;
+}
+.font-latin {
+  font-family: "Cormorant Garamond", serif;
+}
+
+/* ---- glass, ruled like a docket sheet ---- */
+.glass {
+  background: linear-gradient(
+    155deg,
+    rgba(243, 236, 221, 0.075) 0%,
+    rgba(18, 48, 58, 0.42) 45%,
+    rgba(7, 19, 25, 0.58) 100%
+  );
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  border: 1px solid rgba(201, 162, 39, 0.26);
+  box-shadow:
+    inset 0 1px 0 rgba(243, 236, 221, 0.14),
+    0 24px 60px -30px rgba(0, 0, 0, 0.9);
+}
+.glass-soft {
+  background: linear-gradient(
+    160deg,
+    rgba(243, 236, 221, 0.06) 0%,
+    rgba(12, 31, 39, 0.38) 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(201, 162, 39, 0.18);
+  box-shadow: inset 0 1px 0 rgba(243, 236, 221, 0.1);
+}
+.glass-nav {
+  background: rgba(7, 19, 25, 0.72);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.24);
+}
+
+.rule {
+  border-color: rgba(201, 162, 39, 0.2);
+}
+.hairline {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 162, 39, 0.55),
+    transparent
+  );
+  height: 1px;
+}
+
+.tracked {
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+}
+
+.brass-text {
+  background: linear-gradient(180deg, #e7c766 0%, #c9a227 55%, #8c6e15 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+section {
+  scroll-margin-top: 90px;
+}
+
+/* ---- motion ---- */
+@keyframes waPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+.wa-pulse {
+  animation: waPulse 2.2s infinite;
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+.float-y {
+  animation: floatY 3.4s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  animation: marquee 42s linear infinite;
+}
+
+@keyframes shineSweep {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(320%) skewX(-18deg);
+  }
+}
+.sweep::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 38%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(243, 236, 221, 0.32),
+    transparent
+  );
+  animation: shineSweep 4.5s ease-in-out infinite;
+}
+
+.row-glow:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(201, 162, 39, 0.14),
+    rgba(201, 162, 39, 0)
+  );
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee,
+  .float-y,
+  .wa-pulse,
+  .sweep::before {
+    animation: none !important;
+  }
+}
